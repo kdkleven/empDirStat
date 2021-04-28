@@ -2,21 +2,22 @@ import React from "react";
 import "./style.css";
 
 function FriendCard(props) {
+  console.log(props);
   return (
     <div className="card">
       <div className="img-container">
-        <img alt={props.name} src={props.image} />
+        <img alt={props.firstName} src={props.picture} />
       </div>
       <div className="content">
         <ul>
           <li>
-            <strong>Name:</strong> {props.name}
+            <strong>First Name:</strong> {props.firstName}
           </li>
           <li>
-            <strong>Occupation:</strong> {props.occupation}
+            <strong>Last Name:</strong> {props.lastName}
           </li>
           <li>
-            <strong>Location:</strong> {props.location}
+            <strong>Email:</strong> {props.email}
           </li>
         </ul>
       </div>
