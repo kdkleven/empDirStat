@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import EmployeeCard from "./components/EmployeeCard";
+import EmployeeTable from "./components/EmployeeTable";
+import SearchForm from "./components/SearchForm";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 //import employees from "./employees.json";
 import API from "./utils/API";
+import EmployeeRecord from "./components/EmployeeRecord";
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
@@ -16,7 +18,7 @@ class App extends Component {
 
   removeFriend = id => {
     // Filter this.state.friends for friends with an id not equal to the id being removed
-    const employees = this.state.employees.filter(employee => employee.id !== id);
+    const employees = this.state.employees.filter(employee => employee.id.value !== id);
     // Set this.state.friends equal to the new friends array
     this.setState({ employees });
   };
@@ -26,22 +28,27 @@ class App extends Component {
       .then(results => {
         //console.log(results.data.results);
         this.setState({ employees: results.data.results });
-      })
-  }
+      });
+    }
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
     console.log(this.state.employees);
+    console.log(this.state.name);
     return (
       <Wrapper>
         <Title>Employee Directory</Title>
-        {this.state.employees.map(employee => (
-          <EmployeeCard
-              removeEmployee={this.removeFriend}
-              firstName={employee.name.first}
-              lastName={employee.name.last}
-              email={employee.email}
+        <SearchForm />
+        <EmployeeTable />
+          {this.state.employees.map(employee => (
+          <EmployeeRecord
+                // SEARCH removeEmployee={this.removeFriend}
+              // FILTER
               picture={employee.picture.medium}
+              name={employee.name.first}
+              phone={employee.phone}
+              email={employee.email}
+              dob={employee.dob.date}
           />
         ))}
       </Wrapper>
@@ -50,19 +57,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-// <Wrapper>
-
-//         {this.state.employees.map(friend => (
-//           <EmployeeCard
-//             removeEmployee={this.removeFriend}
-//             id={friend.id}
-//             key={friend.id}
-//             name={friend.name}
-//             image={friend.image}
-//             occupation={friend.occupation}
-//             location={friend.location}
-//           />
-//         ))}
-//       </Wrapper>
