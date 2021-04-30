@@ -5,7 +5,7 @@ import Title from "./components/Title";
 //import employees from "./employees.json";
 import EmployeeRecord from "./components/EmployeeRecord";
 import API from "./utils/API";
-
+import { format } from 'date-fns';
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
@@ -29,6 +29,8 @@ class App extends Component {
         //console.log(results.data.results);
         this.setState({ employees: results.data.results });
       });
+      console.log(this.state.employees);
+   
     };
 
     handleInputChange = event => {
@@ -47,11 +49,11 @@ class App extends Component {
         .catch(err => this.setState({ error: err.message }));
     };
 
+    
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
     console.log(this.state.employees);
-    //console.log(this.state.name);
     return (
       <Wrapper>
         <Title>Employee Directory</Title>
@@ -72,10 +74,10 @@ class App extends Component {
               // FILTER
               id={employee.id.value}
               picture={employee.picture.medium}
-              name={employee.name.first}
-              phone={employee.phone}
+              name={employee.name.first + " " + employee.name.last}
+              cell={employee.cell}
               email={employee.email}
-              dob={employee.dob.date}
+              dob={format(new Date(employee.dob.date), 'MM/dd/yyyy' )}
           />
         ))}
         </table>
