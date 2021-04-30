@@ -29,11 +29,28 @@ class App extends Component {
         //console.log(results.data.results);
         this.setState({ employees: results.data.results });
       });
-    }
+    };
+
+    handleInputChange = event => {
+      this.setState({ search: event.target.value });
+    };
+  
+    handleFormSubmit = event => {
+      event.preventDefault();
+      API.getDogsOfBreed(this.state.search)
+        .then(res => {
+          if (res.data.status === "error") {
+            throw new Error(res.data.message);
+          }
+          this.setState({ results: res.data.message, error: "" });
+        })
+        .catch(err => this.setState({ error: err.message }));
+    };
+
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
-    console.log(this.state.employees);
+    //console.log(this.state.employees);
     console.log(this.state.name);
     return (
       <Wrapper>

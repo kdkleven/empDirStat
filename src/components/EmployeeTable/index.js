@@ -16,13 +16,13 @@ function EmployeeTable(props) {
         </tr>
       </thead>
       <tbody>
-      <EmployeeRecord 
-        picture={props.picture}
-        name={props.name}
-        phone={props.phone}
-        email={props.email}
-        dob={props.dob}
-      />
+        <tr>
+          <td class="w-25"><img src={props.picture} class="img-fluid img-thumbnail" alt={props.lastName} /></td>
+          <td>{props.name}</td>
+          <td>{props.phone}</td>
+          <td>{props.email}</td>
+          <td>{props.dob}</td>
+        </tr>
       </tbody>
     </table>
 
