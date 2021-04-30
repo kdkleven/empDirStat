@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import EmployeeTable from "./components/EmployeeTable";
 import SearchForm from "./components/SearchForm";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 //import employees from "./employees.json";
-import API from "./utils/API";
 import EmployeeRecord from "./components/EmployeeRecord";
+import API from "./utils/API";
+
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
@@ -50,17 +50,27 @@ class App extends Component {
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
-    //console.log(this.state.employees);
-    console.log(this.state.name);
+    console.log(this.state.employees);
+    //console.log(this.state.name);
     return (
       <Wrapper>
         <Title>Employee Directory</Title>
         <SearchForm />
-        <EmployeeTable />
+        <table class="table table-image">
+          <thead>
+            <tr>
+              <th scope="col">Image</th>
+              <th scope="col">Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Email</th>
+              <th scope="col">DOB</th>
+            </tr>
+          </thead>
           {this.state.employees.map(employee => (
           <EmployeeRecord
                 // SEARCH removeEmployee={this.removeFriend}
               // FILTER
+              id={employee.id.value}
               picture={employee.picture.medium}
               name={employee.name.first}
               phone={employee.phone}
@@ -68,6 +78,7 @@ class App extends Component {
               dob={employee.dob.date}
           />
         ))}
+        </table>
       </Wrapper>
     );
   }
