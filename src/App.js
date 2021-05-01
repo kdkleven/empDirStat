@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SearchForm from "./components/SearchForm";
+//import SearchForm from "./components/SearchForm";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 //import employees from "./employees.json";
@@ -39,14 +39,7 @@ class App extends Component {
   
     handleFormSubmit = event => {
       event.preventDefault();
-      API.getDogsOfBreed(this.state.search)
-        .then(res => {
-          if (res.data.status === "error") {
-            throw new Error(res.data.message);
-          }
-          this.setState({ results: res.data.message, error: "" });
-        })
-        .catch(err => this.setState({ error: err.message }));
+    
     };
 
     
@@ -57,7 +50,22 @@ class App extends Component {
     return (
       <Wrapper>
         <Title>Employee Directory</Title>
-        <SearchForm />
+        <form>
+      <div className="form-group">
+        <input
+          onChange={this.state.handleInputChange}
+          value={this.state.search}
+          name="search"
+          type="text"
+          className="form-control"
+          placeholder="Search the employee directory"
+          id="search"
+        />
+        <button onClick={this.state.handleFormSubmit} className="btn btn-primary">
+          Search
+        </button>
+      </div>
+    </form>
         <table class="table table-image">
           <thead>
             <tr>
