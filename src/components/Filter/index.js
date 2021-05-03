@@ -5,29 +5,19 @@ function Filter(props) {
     console.log("Filter", props)
     return (
         <tbody>
-            {props.results.filter(employee => {
-                const name = employee.name.first.toLowerCase() + employee.name.last.toLowerCase();
-                const filterEmp = employee.value.toLowerCase()
-                const result = name.includes(filterEmp)
-               return result
+            {props.results.filter(filter => {
+                const name = filter.name.first.toLowerCase() + filter.name.last.toLowerCase();
+                const filterName = props.value.toLowerCase()
+                const filtered = name.includes(filterName)
+               return filtered
             }).map(filtered => (
-                <tr key={filtered.login.uuid}>
-                    <td>
-                        <img src={filtered.picture.medium} alt={ `headshot of: ${result.name.first} ${result.name.last}` } ></img>
-                    </td>
-                    <td>
-                        {filtered.name.first} {filtered.name.last}
-                    </td>
-                    <td>
-                        {filtered.cell}
-                    </td>
-                    <td>
-                        {filtered.email}
-                    </td>
-                    <td data-th="DOB">
-                        {formatDate(filtered.dob.date)}
-                    </td>
-                </tr>
+                <tr>
+                <td class="w-25"><img src={filtered.picture.medium} class="img-fluid img-thumbnail" alt={props.lastName} /></td>
+                <td>{filtered.name.first} {filtered.name.last}</td>
+                <td>{filtered.cell}</td>
+                <td>{filtered.email}</td>
+                <td>{format(new Date(filtered.dob.date), 'MM/dd/yyyy')}</td>
+            </tr>
             ))}
         </tbody>
     );
