@@ -5,6 +5,7 @@ import Filter from "../Filter";
 
 function Table(props) {
     //console.log("Table", props.employees)
+    // use sort method
     return (
         <table className="table table-image">
             <thead>
