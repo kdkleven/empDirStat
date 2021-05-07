@@ -7,8 +7,10 @@ function Record(props) {
     return (
         <tbody>
        {props.result.map((employee, index) => (
-            <tr id={index}>
-                <td class="w-25"><img src={employee.picture.medium} class="img-fluid img-thumbnail" alt={props.lastName} /></td>
+            <tr key={index}>
+                <td className="w-25">
+                    <img src={employee.picture.medium} className="img-fluid img-thumbnail" alt={props.lastName} />
+                </td>
                 <td>{employee.name.first} {employee.name.last}</td>
                 <td>{employee.cell}</td>
                 <td>{employee.email}</td>
