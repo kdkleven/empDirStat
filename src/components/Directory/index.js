@@ -18,7 +18,7 @@ class Directory extends Component {
       .catch(err => console.log(err))
   }
 
-  handleFormSubmit = (event) => {
+  handleSort = (event) => {
     event.preventDefault();
     if (`${this.state.order}` === "" || `${this.state.order}` === "descending") {
       this.setState({
@@ -57,8 +57,7 @@ class Directory extends Component {
         result: dobDESC
       })
     }
-  };
-
+  }
 
   handleInputChange = event => {
     const name = event.target.name
@@ -69,7 +68,6 @@ class Directory extends Component {
     })
   }
 
-  // use sort method
   render() {
     return (
       <div>
@@ -77,16 +75,16 @@ class Directory extends Component {
           value={this.state.search}
           handleInputChange={this.handleInputChange}
         />
-        <table id="dtBasicExample" className="table table-striped table-bordered table-sm" width="100%">
+        <table id="dtBasicExample" className="table table-dark" width="100%">
           <thead>
             <tr>
-              <th className="th-sm">Image</th>
-              <th className="th-sm">Name</th>
-              <th className="th-sm">Phone</th>
-              <th className="th-sm">Email</th>
-              <th className="arrow"
+              <th scope="col">Image</th>
+              <th scope="col">Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Email</th>
+              <th scope="arrow"
                   data-order={this.state.order}
-                  onClick={this.handleFormSubmit}>
+                  onClick={this.handleSort}>
                   DOB
               </th>
             </tr>
