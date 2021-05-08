@@ -3,23 +3,20 @@ import "./style.css";
 
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 function Search(props) {
-  console.log("Search", props);
   return (
     <form>
-      <div className="form-group">
-        <input
-          onChange={props.handleInputChange}
-          name="search"
-          type="text"
-          className="form-control"
-          placeholder="Search the employee directory"
-          id="search"
-        />
-        <button onClick={props.handleFormSubmit} className="btn btn-primary">
-          Search
-        </button>
-      </div>
-    </form>
+          <div className="form-group">
+            <input
+              onChange={props.handleInputChange}
+              type="text"
+              name="search"
+              value={props.value}
+              className="form-control"
+              placeholder="Filter employee by name"
+              id="search"
+            />
+          </div>
+        </form>
   );
 }
 
